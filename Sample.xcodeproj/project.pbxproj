@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5556427420FE155B00AEAE2B /* IDXMLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556427320FE155B00AEAE2B /* IDXMLModel.m */; };
+		5556427A20FE198A00AEAE2B /* IDXMLStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556427920FE198A00AEAE2B /* IDXMLStringGenerator.m */; };
+		5556428420FF151600AEAE2B /* NSString+IDXMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556428320FF151600AEAE2B /* NSString+IDXMLAdditions.m */; };
+		5556428720FF2D5200AEAE2B /* BookXMLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556428620FF2D5200AEAE2B /* BookXMLModel.m */; };
+		5556428A20FF2D6100AEAE2B /* BookstoreXMLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556428920FF2D6100AEAE2B /* BookstoreXMLModel.m */; };
+		5556429020FF2E8400AEAE2B /* RootXMLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556428F20FF2E8400AEAE2B /* RootXMLModel.m */; };
 		559AC90820F8611F001DEA5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 559AC90720F8611F001DEA5B /* AppDelegate.m */; };
 		559AC90B20F8611F001DEA5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559AC90A20F8611F001DEA5B /* ViewController.m */; };
 		559AC90E20F8611F001DEA5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 559AC90C20F8611F001DEA5B /* Main.storyboard */; };
@@ -20,6 +26,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5556427220FE155B00AEAE2B /* IDXMLModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDXMLModel.h; sourceTree = "<group>"; };
+		5556427320FE155B00AEAE2B /* IDXMLModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDXMLModel.m; sourceTree = "<group>"; };
+		5556427820FE198A00AEAE2B /* IDXMLStringGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDXMLStringGenerator.h; sourceTree = "<group>"; };
+		5556427920FE198A00AEAE2B /* IDXMLStringGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDXMLStringGenerator.m; sourceTree = "<group>"; };
+		5556428220FF151600AEAE2B /* NSString+IDXMLAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+IDXMLAdditions.h"; sourceTree = "<group>"; };
+		5556428320FF151600AEAE2B /* NSString+IDXMLAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+IDXMLAdditions.m"; sourceTree = "<group>"; };
+		5556428520FF2D5200AEAE2B /* BookXMLModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookXMLModel.h; sourceTree = "<group>"; };
+		5556428620FF2D5200AEAE2B /* BookXMLModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookXMLModel.m; sourceTree = "<group>"; };
+		5556428820FF2D6100AEAE2B /* BookstoreXMLModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookstoreXMLModel.h; sourceTree = "<group>"; };
+		5556428920FF2D6100AEAE2B /* BookstoreXMLModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookstoreXMLModel.m; sourceTree = "<group>"; };
+		5556428E20FF2E8400AEAE2B /* RootXMLModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootXMLModel.h; sourceTree = "<group>"; };
+		5556428F20FF2E8400AEAE2B /* RootXMLModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootXMLModel.m; sourceTree = "<group>"; };
 		559AC90320F8611F001DEA5B /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		559AC90620F8611F001DEA5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		559AC90720F8611F001DEA5B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +69,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5556427B20FE1C1A00AEAE2B /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				5556428E20FF2E8400AEAE2B /* RootXMLModel.h */,
+				5556428F20FF2E8400AEAE2B /* RootXMLModel.m */,
+				5556428820FF2D6100AEAE2B /* BookstoreXMLModel.h */,
+				5556428920FF2D6100AEAE2B /* BookstoreXMLModel.m */,
+				5556428520FF2D5200AEAE2B /* BookXMLModel.h */,
+				5556428620FF2D5200AEAE2B /* BookXMLModel.m */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
 		559AC8FA20F8611F001DEA5B = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +106,7 @@
 				559AC90720F8611F001DEA5B /* AppDelegate.m */,
 				559AC90920F8611F001DEA5B /* ViewController.h */,
 				559AC90A20F8611F001DEA5B /* ViewController.m */,
+				5556427B20FE1C1A00AEAE2B /* Examples */,
 				559AC90C20F8611F001DEA5B /* Main.storyboard */,
 				559AC90F20F86122001DEA5B /* Assets.xcassets */,
 				559AC91120F86122001DEA5B /* LaunchScreen.storyboard */,
@@ -95,6 +127,12 @@
 				559AC92420F8D1C0001DEA5B /* IDXMLValue.m */,
 				559AC92620F8D62C001DEA5B /* IDXMLValue+Protected.h */,
 				559AC92720F8D62C001DEA5B /* IDXMLValue+Protected.m */,
+				5556427220FE155B00AEAE2B /* IDXMLModel.h */,
+				5556427320FE155B00AEAE2B /* IDXMLModel.m */,
+				5556427820FE198A00AEAE2B /* IDXMLStringGenerator.h */,
+				5556427920FE198A00AEAE2B /* IDXMLStringGenerator.m */,
+				5556428220FF151600AEAE2B /* NSString+IDXMLAdditions.h */,
+				5556428320FF151600AEAE2B /* NSString+IDXMLAdditions.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -170,12 +208,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				559AC90B20F8611F001DEA5B /* ViewController.m in Sources */,
+				5556428420FF151600AEAE2B /* NSString+IDXMLAdditions.m in Sources */,
+				5556429020FF2E8400AEAE2B /* RootXMLModel.m in Sources */,
 				559AC92220F86CA5001DEA5B /* IDXMLElement.m in Sources */,
+				5556428720FF2D5200AEAE2B /* BookXMLModel.m in Sources */,
 				559AC91620F86122001DEA5B /* main.m in Sources */,
 				559AC91F20F86368001DEA5B /* IDXMLBuilder.m in Sources */,
 				559AC92520F8D1C0001DEA5B /* IDXMLValue.m in Sources */,
 				559AC90820F8611F001DEA5B /* AppDelegate.m in Sources */,
+				5556427A20FE198A00AEAE2B /* IDXMLStringGenerator.m in Sources */,
+				5556427420FE155B00AEAE2B /* IDXMLModel.m in Sources */,
 				559AC92820F8D62C001DEA5B /* IDXMLValue+Protected.m in Sources */,
+				5556428A20FF2D6100AEAE2B /* BookstoreXMLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

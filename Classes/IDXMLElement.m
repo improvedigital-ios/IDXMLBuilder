@@ -8,6 +8,7 @@
 
 #import "IDXMLElement.h"
 #import "IDXMLValue+Protected.h"
+#import "IDXMLStringGenerator.h"
 
 @interface IDXMLElement ()
 
@@ -123,51 +124,12 @@
 
 - (NSString *)representedString {
     
-    // Tags
-    NSMutableString *tag = @"".mutableCopy;
-    
-    if (self.prefix.length) {
-        [tag appendString:self.prefix];
-        [tag appendString:@":"];
-    }
-    
-    [tag appendString:self.parameter];
-    [tag insertString:@"<" atIndex:0];
-    [tag insertString:@">" atIndex:tag.length];
-    
-    NSMutableString *initialTag = tag.mutableCopy;
-    NSMutableString *endTag = tag.mutableCopy;
-    [endTag insertString:@"/" atIndex:1];
-    
-    // Attributes
-    NSMutableString *attributes = @"".mutableCopy;
-    [self.attributes enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
-        [attributes appendString:@" "];
-        [attributes appendString:key];
-        [attributes appendString:@"="];
-        [attributes appendString:@"\""];
-        
-        if (obj.length) {
-            [attributes appendString:obj];
-        }
-
-        [attributes appendString:@"\""];
-    }];
-    
-    // Total string
-    NSMutableString *totalString = initialTag.mutableCopy;
-    
-    if (attributes.length) {
-        [totalString insertString:attributes.copy atIndex:totalString.length - 1];
-    }
-    
     NSString *safeString = [self.value representedValue];
-    if (safeString.length) {
-        [totalString appendString:safeString];
-    }
-    
-    [totalString appendString:endTag.copy];
-    return totalString.copy;
+    NSString *representedString = [IDXMLStringGenerator representedStringWithPrefix:self.prefix
+                                                                          parameter:self.parameter
+                                                                              value:safeString
+                                                                         attributes:self.attributes];
+    return representedString;
 }
 
 - (NSDictionary *)namespaces {

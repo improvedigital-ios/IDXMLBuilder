@@ -8,6 +8,7 @@
 
 #import "IDXMLValue+Protected.h"
 #import "IDXMLElement.h"
+#import "NSString+IDXMLAdditions.h"
 
 @implementation IDXMLValue (Protected)
 
@@ -21,15 +22,10 @@
         
         [self.elements enumerateObjectsUsingBlock:^(IDXMLElement * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            NSMutableString *representedString = [obj representedString].mutableCopy;
-            NSArray *array = [representedString componentsSeparatedByString:@"\n"];
+            NSString *representedString = [obj representedString];
+            NSString *representedAndTabulatedString = [representedString tabulated];
             
-            for (int i = 0; i < array.count; i++) {
-                NSRange range = [representedString rangeOfString:array[i]];
-                [representedString insertString:@"\t" atIndex:range.location];
-            }
-            
-            [mutableString appendString:representedString.copy];
+            [mutableString appendString:representedAndTabulatedString];
             [mutableString appendString:@"\n"];
         }];
         
