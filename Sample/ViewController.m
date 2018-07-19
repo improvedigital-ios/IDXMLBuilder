@@ -98,7 +98,6 @@
         }] withPrefix:@"xml"];
     }];
     
-    
     NSLog(@"%@", builder.result);
 }
 
