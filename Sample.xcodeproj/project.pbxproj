@@ -26,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		550B76F521008CE700EB3320 /* IDXMLModelPrivateProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDXMLModelPrivateProtocol.h; sourceTree = "<group>"; };
 		5556427220FE155B00AEAE2B /* IDXMLModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDXMLModel.h; sourceTree = "<group>"; };
 		5556427320FE155B00AEAE2B /* IDXMLModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDXMLModel.m; sourceTree = "<group>"; };
 		5556427820FE198A00AEAE2B /* IDXMLStringGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDXMLStringGenerator.h; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 				559AC92720F8D62C001DEA5B /* IDXMLValue+Protected.m */,
 				5556427220FE155B00AEAE2B /* IDXMLModel.h */,
 				5556427320FE155B00AEAE2B /* IDXMLModel.m */,
+				550B76F521008CE700EB3320 /* IDXMLModelPrivateProtocol.h */,
 				5556427820FE198A00AEAE2B /* IDXMLStringGenerator.h */,
 				5556427920FE198A00AEAE2B /* IDXMLStringGenerator.m */,
 				5556428220FF151600AEAE2B /* NSString+IDXMLAdditions.h */,

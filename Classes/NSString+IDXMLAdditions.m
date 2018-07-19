@@ -13,10 +13,14 @@
 - (NSString *)tabulated {
     
     NSMutableString *representedString = self.mutableCopy;
-    NSArray *array = [representedString componentsSeparatedByString:@""];
+    NSArray *array = [representedString componentsSeparatedByString:@"\n"];
     
     for (int i = 0; i < array.count; i++) {
         NSRange range = [representedString rangeOfString:array[i]];
+        
+        if (range.location == NSNotFound) {
+            continue;
+        }
         [representedString insertString:@"\t" atIndex:range.location];
     }
     

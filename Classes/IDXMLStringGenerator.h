@@ -13,8 +13,7 @@
 + (NSString *)representedStringWithPrefix: (NSString *)prefix
                                 parameter: (NSString *)parameter
                                     value: (id)value
-                               attributes: (NSDictionary *)attributes;
-
-+ (NSString *)safeStringValue: (id)value;
+                          attributesArray: (NSArray <NSDictionary *> *)attributesArray
+                                  initial: (BOOL)initial;
 
 @end

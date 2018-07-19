@@ -128,7 +128,8 @@
     NSString *representedString = [IDXMLStringGenerator representedStringWithPrefix:self.prefix
                                                                           parameter:self.parameter
                                                                               value:safeString
-                                                                         attributes:self.attributes];
+                                                                    attributesArray:@[self.attributes]
+                                                                            initial:NO];
     return representedString;
 }
 

@@ -12,7 +12,10 @@
 
 - (NSString *)toXMLString;
 
+@property (nonatomic, strong) NSDictionary *attributes;
 - (void)addAttributes: (NSDictionary <NSString *, NSString *> *)attributes forKey: (NSString *)key;
+
+@property (nonatomic, strong) NSString *defaultPrefix;
 - (NSDictionary <NSString *, NSString *> *)prefixesForPropertyKeys;
 
 @end

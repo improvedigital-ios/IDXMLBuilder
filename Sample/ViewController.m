@@ -17,33 +17,38 @@
     [super viewDidLoad];
     
     BookXMLModel *book1 = [BookXMLModel new];
+    book1.defaultPrefix = @"xml";
     book1.title = @"Everyday Italian";
     book1.author = @"Giada De Laurentiis";
     book1.year = 2005;
     book1.price = 30.00;
-    [book1 addAttributes: @{@"category" : @"cooking"} forKey: @"self"];
+    book1.attributes = @{@"category" : @"cooking"};
     [book1 addAttributes: @{@"lang" : @"en"} forKey: @"title"];
     
     BookXMLModel *book2 = [BookXMLModel new];
+    book2.defaultPrefix = @"xml";
     book2.title = @"Harry Potter";
     book2.author = @"J K. Rowling";
     book2.year = 2005;
     book2.price = 29.99;
-    [book2 addAttributes: @{@"category" : @"children"} forKey: @"self"];
+    book2.attributes = @{@"category" : @"children"};
     [book2 addAttributes: @{@"lang" : @"en"} forKey: @"title"];
     
     BookXMLModel *book3 = [BookXMLModel new];
+    book3.defaultPrefix = @"xml";
     book3.title = @"Learning XML";
     book3.author = @"Erik T. Ray";
     book3.year = 2003;
     book3.price = 39.95;
-    [book3 addAttributes: @{@"category" : @"web"} forKey: @"self"];
+    book3.attributes = @{@"category" : @"web"};
     [book3 addAttributes: @{@"lang" : @"en"} forKey: @"title"];
     
     BookstoreXMLModel *bookstore = [BookstoreXMLModel new];
+    bookstore.defaultPrefix = @"xml";
     bookstore.book = @[book1, book2, book3];
     
     RootXMLModel *root = [RootXMLModel new];
+    root.defaultPrefix = @"xml";
     root.bookstore = bookstore;
 
     NSLog(@"%@", root.toXMLString);

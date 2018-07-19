@@ -26,7 +26,6 @@
             NSString *representedAndTabulatedString = [representedString tabulated];
             
             [mutableString appendString:representedAndTabulatedString];
-            [mutableString appendString:@"\n"];
         }];
         
         return mutableString.copy;

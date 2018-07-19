@@ -9,152 +9,60 @@
 #import "IDXMLStringGenerator.h"
 #import "IDXMLModel.h"
 #import "NSString+IDXMLAdditions.h"
+#import "IDXMLModelPrivateProtocol.h"
 
 @implementation IDXMLStringGenerator
-
-//+ (NSString *)representedStringWithPrefix: (NSString *)prefix
-//                                parameter: (NSString *)parameter
-//                                    value: (NSString *)value
-//                               attributes: (NSDictionary *)attributes {
-//
-//
-//    // Tags
-//    NSMutableString *tag = @"".mutableCopy;
-//
-//    if (prefix.length) {
-//        [tag appendString:prefix];
-//        [tag appendString:@":"];
-//    }
-//
-//    [tag appendString:parameter];
-//    [tag insertString:@"<" atIndex:0];
-//    [tag insertString:@">" atIndex:tag.length];
-//
-//    NSMutableString *initialTag = tag.mutableCopy;
-//    NSMutableString *endTag = tag.mutableCopy;
-//    [endTag insertString:@"/" atIndex:1];
-//
-//    // Attributes
-//    NSMutableString *attributesString = @"".mutableCopy;
-//    [attributes enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
-//        [attributesString appendString:@" "];
-//        [attributesString appendString:key];
-//        [attributesString appendString:@"="];
-//        [attributesString appendString:@"\""];
-//
-//        if (obj.length) {
-//            [attributesString appendString:obj];
-//        }
-//
-//        [attributesString appendString:@"\""];
-//    }];
-//
-//    // Total string
-//    NSMutableString *totalString = initialTag.mutableCopy;
-//
-//    if (attributesString.length) {
-//        [totalString insertString:attributes.copy atIndex:totalString.length - 1];
-//    }
-//
-//    if (value.length) {
-//        [totalString appendString:value];
-//    }
-//
-//    [totalString appendString:endTag.copy];
-//    return totalString.copy;
-//}
 
 + (NSString *)representedStringWithPrefix: (NSString *)prefix
                                 parameter: (NSString *)parameter
                                     value: (id)value
-                               attributes: (NSDictionary *)attributes {
-    
-    NSString *formattedPrefix = prefix.length ? [NSString stringWithFormat:@"%@:", prefix] : @"";
-    NSString *formattedAttributes = [self formattedAttributes: attributes];
+                          attributesArray: (NSArray <NSDictionary *> *)attributesArray
+                                  initial: (BOOL)initial {
 
-    NSString *initialTagFormat = [NSString stringWithFormat:@"<%@%@%@>",
-                                  formattedPrefix,
-                                  parameter,
-                                  formattedAttributes];
-    
+    NSString *formattedPrefix = prefix.length ? [prefix stringByAppendingString:@":"] : @"";
     NSMutableString *mutableTotalValue = @"".mutableCopy;
     
     if ([value isKindOfClass:NSArray.class]) {
+
+        NSMutableString *mutableString = @"".mutableCopy;
+        NSArray *a = (NSArray *)value;
         
-            NSMutableString *mutableString = @"".mutableCopy;
-            NSArray *a = (NSArray *)value;
-            for (NSObject *object in a) {
-                
-                [mutableString appendString:@"\n"];
-                
-                NSString *temporaryString = [self safeStringValue:object];
-                NSString *formattedValue = [self formattedValue:temporaryString
-                                              betweenInitialTag:initialTagFormat
-                                                    andFinalTag:initialTagFormat];
-                
-                [mutableString appendString:formattedValue];
-                
-            }
-            [mutableTotalValue appendString:mutableString.copy];
+        [a enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            NSString *safeStringValue = [self safeStringValue:obj];
+            NSString *temporaryString = [@"\n" stringByAppendingString: safeStringValue];
+            NSString *formattedAttributes = [self formattedAttributes: attributesArray[idx]];
+            NSString *formattedValueBetweenTags = [self formattedValueBetweenTagsWithParameter:parameter
+                                                                                         value:temporaryString
+                                                                                        prefix:formattedPrefix
+                                                                           formattedAttributes:formattedAttributes];
+            
+            formattedValueBetweenTags = formattedValueBetweenTags.tabulated;
+            
+            [mutableString appendString:@"\n"];
+            [mutableString appendString:formattedValueBetweenTags];
+        }];
+        
+        [mutableTotalValue appendString:mutableString.copy];
     }
     else {
         
         NSString *temporaryString = [self safeStringValue:value];
-        NSString *formattedValue = [self formattedValue:temporaryString
-                                      betweenInitialTag:initialTagFormat
-                                            andFinalTag:initialTagFormat];
+        NSString *formattedAttributes = [self formattedAttributes: attributesArray.firstObject];
+        NSString *formattedValueBetweenTags = [self formattedValueBetweenTagsWithParameter:parameter
+                                                                                     value:temporaryString
+                                                                                    prefix:formattedPrefix
+                                                                       formattedAttributes:formattedAttributes];
         
-        mutableTotalValue = formattedValue.mutableCopy;
+        NSString *tabulation = initial ? @"" : @"\t";
+        NSString *totalFormattedValue = [tabulation stringByAppendingString: formattedValueBetweenTags];
+        
+        mutableTotalValue = totalFormattedValue.mutableCopy;
     }
-
+    
+    [mutableTotalValue appendString:@"\n"];
+    
     return mutableTotalValue.copy;
-    
-    // ----
-    
-//    // Tags
-//    NSMutableString *tag = @"".mutableCopy;
-//
-//    if (prefix.length) {
-//        [tag appendString:prefix];
-//        [tag appendString:@":"];
-//    }
-//
-//    [tag appendString:parameter];
-//    [tag insertString:@"<" atIndex:0];
-//    [tag insertString:@">" atIndex:tag.length];
-//
-//    NSMutableString *initialTag = tag.mutableCopy;
-//    NSMutableString *endTag = tag.mutableCopy;
-//    [endTag insertString:@"/" atIndex:1];
-//
-//    // Attributes
-//    NSMutableString *attributesString = @"".mutableCopy;
-//    [attributes enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
-//        [attributesString appendString:@" "];
-//        [attributesString appendString:key];
-//        [attributesString appendString:@"="];
-//        [attributesString appendString:@"\""];
-//
-//        if (obj.length) {
-//            [attributesString appendString:obj];
-//        }
-//
-//        [attributesString appendString:@"\""];
-//    }];
-//
-//    // Total string
-//    NSMutableString *totalString = initialTag.mutableCopy;
-//
-//    if (attributesString.length) {
-//        [totalString insertString:attributes.copy atIndex:totalString.length - 1];
-//    }
-//
-//    if (value.length) {
-//        [totalString appendString:value];
-//    }
-//
-//    [totalString appendString:endTag.copy];
-//    return totalString.copy;
 }
 
 + (NSString *)formattedValue: (NSString *)value
@@ -201,11 +109,35 @@
         safeString = [n stringValue];
     }
     else if ([value isKindOfClass:IDXMLModel.class]) {
-        IDXMLModel *m = (IDXMLModel *)value;
-        safeString = [m toXMLString];
+        
+        if ([value conformsToProtocol:@protocol(IDXMLModelPrivateProtocol)]) {
+            IDXMLModel <IDXMLModelPrivateProtocol> *m = (IDXMLModel <IDXMLModelPrivateProtocol> *)value;
+            safeString = [m toXMLStringFirstly: NO];
+        }
     }
     
     return safeString;
+}
+
++ (NSString *)formattedValueBetweenTagsWithParameter: (NSString *)parameter
+                                               value: (NSString *)value
+                                              prefix: (NSString *)prefix
+                                 formattedAttributes: (NSString *)formattedAttributes {
+    
+    NSString *initialTagFormat = [NSString stringWithFormat:@"<%@%@%@>",
+                                  prefix,
+                                  parameter,
+                                  formattedAttributes];
+    
+    NSString *finalTagFormat = [NSString stringWithFormat:@"</%@%@%@>",
+                                prefix,
+                                parameter,
+                                formattedAttributes];
+    
+    NSString *formattedValue = [self formattedValue:value
+                                  betweenInitialTag:initialTagFormat
+                                        andFinalTag:finalTagFormat];
+    return formattedValue;
 }
 
 @end
