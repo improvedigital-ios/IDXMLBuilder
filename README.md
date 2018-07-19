@@ -52,36 +52,36 @@ NSLog(@"\n%@\n", root.toXMLString);
 ```objective-c
 IDXMLBuilder *builder = [IDXMLBuilder builderWithElementBlock:^IDXMLElement *{
 
-return [[IDXMLElement elementWithParameter:@"bookstore" attributes:[self namespaces] valuesBlock:^NSArray<IDXMLElement *> *{
+    return [[IDXMLElement elementWithParameter:@"bookstore" attributes:[self namespaces] valuesBlock:^NSArray<IDXMLElement *> *{
+    
+    return @[
+    
+        [[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"cooking"} valuesBlock:^NSArray<IDXMLElement *> *{
+    
+            return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Everyday Italian" ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"author" value: @"Giada De Laurentiis" ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"year" value: @(2005) ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"price" value: @(30.00) ] withPrefix:@"xml"]];
+                    }] withPrefix:@"xml"],
 
-return @[
+        [[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"children"} valuesBlock:^NSArray<IDXMLElement *> *{
 
-[[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"cooking"} valuesBlock:^NSArray<IDXMLElement *> *{
+            return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Harry Potter" ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"author" value: @"J K. Rowling" ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"year" value: @(2005) ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"price" value: @(29.99) ] withPrefix:@"xml"]];
+                    }] withPrefix:@"xml"],
 
-return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Everyday Italian" ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"author" value: @"Giada De Laurentiis" ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"year" value: @(2005) ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"price" value: @(30.00) ] withPrefix:@"xml"]];
-}] withPrefix:@"xml"],
+        [[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"web"} valuesBlock:^NSArray<IDXMLElement *> *{
 
-[[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"children"} valuesBlock:^NSArray<IDXMLElement *> *{
+            return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Learning XML" ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"author" value: @"Erik T. Ray" ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"year" value: @(2003) ] withPrefix:@"xml"],
+                    [[IDXMLElement elementWithParameter: @"price" value: @(39.95) ] withPrefix:@"xml"]];
+                    }] withPrefix:@"xml"]
 
-return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Harry Potter" ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"author" value: @"J K. Rowling" ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"year" value: @(2005) ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"price" value: @(29.99) ] withPrefix:@"xml"]];
-}] withPrefix:@"xml"],
-
-[[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"web"} valuesBlock:^NSArray<IDXMLElement *> *{
-
-return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Learning XML" ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"author" value: @"Erik T. Ray" ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"year" value: @(2003) ] withPrefix:@"xml"],
-[[IDXMLElement elementWithParameter: @"price" value: @(39.95) ] withPrefix:@"xml"]];
-}] withPrefix:@"xml"]
-
-];
-}] withPrefix:@"xml"];
+        ];
+    }] withPrefix:@"xml"];
 }];
 
 NSLog(@"%@", builder.result);
@@ -92,24 +92,24 @@ NSLog(@"%@", builder.result);
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
 <xml:bookstore xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://www.bacup-it.com/Integration/MobileAppService">
-<xml:book category="cooking">
-<xml:title lang="en">Everyday Italian</xml:title lang="en">
-<xml:author>Giada De Laurentiis</xml:author>
-<xml:year>2005</xml:year>
-<xml:price>30</xml:price>
-</xml:book category="cooking">
-<xml:book category="children">
-<xml:title lang="en">Harry Potter</xml:title lang="en">
-<xml:author>J K. Rowling</xml:author>
-<xml:year>2005</xml:year>
-<xml:price>29.99</xml:price>
-</xml:book category="children">
-<xml:book category="web">
-<xml:title lang="en">Learning XML</xml:title lang="en">
-<xml:author>Erik T. Ray</xml:author>
-<xml:year>2003</xml:year>
-<xml:price>39.95</xml:price>
-</xml:book category="web">
+    <xml:book category="cooking">
+        <xml:title lang="en">Everyday Italian</xml:title lang="en">
+        <xml:author>Giada De Laurentiis</xml:author>
+        <xml:year>2005</xml:year>
+        <xml:price>30</xml:price>
+    </xml:book category="cooking">
+    <xml:book category="children">
+        <xml:title lang="en">Harry Potter</xml:title lang="en">
+        <xml:author>J K. Rowling</xml:author>
+        <xml:year>2005</xml:year>
+        <xml:price>29.99</xml:price>
+    </xml:book category="children">
+    <xml:book category="web">
+        <xml:title lang="en">Learning XML</xml:title lang="en">
+        <xml:author>Erik T. Ray</xml:author>
+        <xml:year>2003</xml:year>
+        <xml:price>39.95</xml:price>
+    </xml:book category="web">
 </xml:bookstore xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://www.bacup-it.com/Integration/MobileAppService">
 
 ```
