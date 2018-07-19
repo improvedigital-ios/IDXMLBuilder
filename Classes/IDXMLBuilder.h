@@ -14,6 +14,8 @@
 + (instancetype)builderWithElementsBlock: (NSArray <IDXMLElement *> *(^)(void))block;
 + (instancetype)builderWithElementBlock: (IDXMLElement *(^)(void))block;
 
+@property (nonatomic, strong) NSString *defaultPrefix;
+
 - (NSString *)result;
 
 @end

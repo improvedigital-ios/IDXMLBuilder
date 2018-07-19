@@ -129,7 +129,7 @@
                                                                           parameter:self.parameter
                                                                               value:safeString
                                                                     attributesArray:@[self.attributes]
-                                                                            initial:NO];
+                                                                            initial:YES];
     return representedString;
 }
 

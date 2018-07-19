@@ -16,6 +16,7 @@
     NSArray *array = [representedString componentsSeparatedByString:@"\n"];
     
     for (int i = 0; i < array.count; i++) {
+        
         NSRange range = [representedString rangeOfString:array[i]];
         
         if (range.location == NSNotFound) {

@@ -16,6 +16,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self buildXMLViaModels];
+    [self buildXMLViaBuilder];
+}
+
+- (void)buildXMLViaModels {
+
     BookXMLModel *book1 = [BookXMLModel new];
     book1.defaultPrefix = @"xml";
     book1.title = @"Everyday Italian";
@@ -49,48 +55,58 @@
     
     RootXMLModel *root = [RootXMLModel new];
     root.defaultPrefix = @"xml";
+    NSDictionary *attributes = [self namespaces];
+    [root addAttributes:attributes forKey:@"bookstore"];
     root.bookstore = bookstore;
+    
+    NSLog(@"\n%@\n", root.toXMLString);
+}
 
-    NSLog(@"%@", root.toXMLString);
+- (void)buildXMLViaBuilder {
     
     IDXMLBuilder *builder = [IDXMLBuilder builderWithElementBlock:^IDXMLElement *{
         
-        return [IDXMLElement elementWithParameter:@"bookstore" valuesBlock:^NSArray<IDXMLElement *> *{
+        return [[IDXMLElement elementWithParameter:@"bookstore" attributes:[self namespaces] valuesBlock:^NSArray<IDXMLElement *> *{
             
             return @[
                      
-                     [IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"cooking"} valuesBlock:^NSArray<IDXMLElement *> *{
+                     [[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"cooking"} valuesBlock:^NSArray<IDXMLElement *> *{
                          
-                         return @[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Everyday Italian"  ],
-                                  [IDXMLElement elementWithParameter: @"author" value: @"Giada De Laurentiis" ],
-                                  [IDXMLElement elementWithParameter: @"year" value: @(2005) ],
-                                  [IDXMLElement elementWithParameter: @"price" value: @(30.00) ]];
-                     }],
+                         return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Everyday Italian" ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"author" value: @"Giada De Laurentiis" ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"year" value: @(2005) ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"price" value: @(30.00) ] withPrefix:@"xml"]];
+                     }] withPrefix:@"xml"],
                      
-                     [IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"children"} valuesBlock:^NSArray<IDXMLElement *> *{
+                     [[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"children"} valuesBlock:^NSArray<IDXMLElement *> *{
                          
-                         return @[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Harry Potter"  ],
-                                  [IDXMLElement elementWithParameter: @"author" value: @"J K. Rowling" ],
-                                  [IDXMLElement elementWithParameter: @"year" value: @(2005) ],
-                                  [IDXMLElement elementWithParameter: @"price" value: @(29.99) ]];
-                     }],
+                         return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Harry Potter" ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"author" value: @"J K. Rowling" ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"year" value: @(2005) ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"price" value: @(29.99) ] withPrefix:@"xml"]];
+                     }] withPrefix:@"xml"],
                      
-                     [IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"web"} valuesBlock:^NSArray<IDXMLElement *> *{
+                     [[IDXMLElement elementWithParameter:@"book" attributes:@{@"category" : @"web"} valuesBlock:^NSArray<IDXMLElement *> *{
                          
-                         return @[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Learning XML"  ],
-                                  [IDXMLElement elementWithParameter: @"author" value: @"Erik T. Ray" ],
-                                  [IDXMLElement elementWithParameter: @"year" value: @(2003) ],
-                                  [IDXMLElement elementWithParameter: @"price" value: @(39.95) ]];
-                     }]
+                         return @[[[IDXMLElement elementWithParameter: @"title" attributes: @{@"lang" : @"en"} value: @"Learning XML" ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"author" value: @"Erik T. Ray" ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"year" value: @(2003) ] withPrefix:@"xml"],
+                                  [[IDXMLElement elementWithParameter: @"price" value: @(39.95) ] withPrefix:@"xml"]];
+                     }] withPrefix:@"xml"]
                      
                      ];
-        }];
+        }] withPrefix:@"xml"];
     }];
     
     
     NSLog(@"%@", builder.result);
 }
 
+- (NSDictionary *)namespaces {
+    
+    return @{ @"xmlns:soapenv" : @"http://schemas.xmlsoap.org/soap/envelope/",
+              @"xmlns:mob" : @"http://www.bacup-it.com/Integration/MobileAppService" };
+}
 
 
 @end
