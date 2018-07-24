@@ -103,6 +103,10 @@
 
 + (NSString *)safeStringValue: (id)value {
     
+    if (value == nil) {
+        return nil;
+    }
+    
     NSString *safeString = nil;
     
     if ([value isKindOfClass:NSString.class]) {
@@ -127,6 +131,10 @@
                                                value: (NSString *)value
                                               prefix: (NSString *)prefix
                                  formattedAttributes: (NSString *)formattedAttributes {
+    
+    if (value == nil) {
+        return [NSString stringWithFormat:@"<%@%@ nil=\"true\"/>", parameter, prefix];
+    }
     
     NSString *initialTagFormat = [NSString stringWithFormat:@"<%@%@%@>",
                                   prefix,
