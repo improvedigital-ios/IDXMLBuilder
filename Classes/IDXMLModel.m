@@ -41,17 +41,7 @@
     
     objc_property_t* props = class_copyPropertyList(objType, &count);
     
-    NSString *initialSymbol = firstly ? @"" : @"\n";
-    NSMutableString *initialString = initialSymbol.mutableCopy;
-    
-    if (firstly) {
-        
-        NSString * const version = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-        
-        [initialString appendString:@"\n"];
-        [initialString appendString:version];
-        [initialString appendString:@"\n"];
-    }
+    NSMutableString *initialString = @"\n".mutableCopy;
     
     NSMutableString *totalMutableFormattedString = initialString.mutableCopy;
     
