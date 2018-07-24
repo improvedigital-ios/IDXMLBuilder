@@ -60,7 +60,10 @@
     }
     
     
-    mutableTotalValue = mutableTotalValue.tabulated.mutableCopy;
+    if (!initial) {
+        mutableTotalValue = mutableTotalValue.tabulated.mutableCopy;
+    }
+    
     [mutableTotalValue appendString:@"\n"];
     
     return mutableTotalValue.copy;
@@ -130,10 +133,9 @@
                                   parameter,
                                   formattedAttributes];
     
-    NSString *finalTagFormat = [NSString stringWithFormat:@"</%@%@%@>",
+    NSString *finalTagFormat = [NSString stringWithFormat:@"</%@%@>",
                                 prefix,
-                                parameter,
-                                formattedAttributes];
+                                parameter];
     
     NSString *formattedValue = [self formattedValue:value
                                   betweenInitialTag:initialTagFormat

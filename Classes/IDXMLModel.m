@@ -20,17 +20,15 @@
 
 @implementation IDXMLModel
 
+
 - (NSString *)toXMLString {
     
     return [self toXMLStringFirstly:YES];
 }
 
 - (void)addAttributes: (NSDictionary <NSString *, NSString *> *)attributes forKey: (NSString *)key {
+    
     self.attributesForKeys[key] = attributes;
-}
-
-- (NSDictionary <NSString *, NSString *> *)prefixesForPropertyKeys {
-    return nil;
 }
 
 
@@ -43,9 +41,9 @@
     
     objc_property_t* props = class_copyPropertyList(objType, &count);
     
-    NSString *initialTag = firstly ? @"" : @"\n";
+    NSString *initialSymbol = firstly ? @"" : @"\n";
+    NSMutableString *initialString = initialSymbol.mutableCopy;
     
-    NSMutableString *initialString = initialTag.mutableCopy;
     if (firstly) {
         
         NSString * const version = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
@@ -118,12 +116,10 @@
 }
 
 - (NSString *)handledPrefixForPropertyName: (NSString *)propertyName {
-    
-    NSDictionary <NSString *, NSString *> *prefixes = [self prefixesForPropertyKeys];
-    
+
     NSString *prefix = [self defaultPrefix];
-    if ([prefixes.allKeys containsObject:propertyName]) {
-        prefix = prefixes[propertyName];
+    if ([self.prefixesForPropertyKeys.allKeys containsObject:propertyName]) {
+        prefix = self.prefixesForPropertyKeys[propertyName];
     }
     
     return prefix;
