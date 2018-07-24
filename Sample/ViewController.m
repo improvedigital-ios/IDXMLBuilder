@@ -10,45 +10,11 @@
 #import "IDXMLBuilder.h"
 
 #import "RootXMLModel.h"
-#import "IDAddScansDataTransferObjects.h"
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    IDAddScansScan *scan = [IDAddScansScan new];
-    scan.Data = @"";
-    scan.Type = @"IndividualConditions";
-    scan.Page = @"1";
-    scan.PersonType = @"Creditor";
-    scan.PersonNumber = @"1";
-    scan.Extension = @"jpg";
-    
-    IDAddScansScanCollection *collection = [IDAddScansScanCollection new];
-    collection.scan = scan;
-    
-    IDAddScansRequest *request = [IDAddScansRequest new];
-    request.ScanCollection = collection;
-    
-    IDAddScans *main = [IDAddScans new];
-    main.request = request;
-    
-    IDAddScansBody *body = [IDAddScansBody new];
-    body.AddScans = main;
-    
-    IDAddScansEnvelope *envelope = [IDAddScansEnvelope new];
-    envelope.attributes = @{@"xmlns:soapenv" : @"http://schemas.xmlsoap.org/soap/envelope/",
-                            @"xmlns" : @"http://www.bacup-it.com/Integration/MobileAppService"};
-    envelope.Body = body;
-    envelope.defaultPrefix = @"soapenv";
-    
-    IDAddScansRoot *root = [IDAddScansRoot new];
-    root.Envelope = envelope;
-    root.defaultPrefix = @"soapenv";
-    
-    NSLog(@"%@", root.toXMLString);
-    
     
     [self buildXMLViaModels];
     [self buildXMLViaBuilder];

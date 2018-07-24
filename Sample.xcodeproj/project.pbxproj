@@ -23,7 +23,6 @@
 		559AC92220F86CA5001DEA5B /* IDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 559AC92120F86CA5001DEA5B /* IDXMLElement.m */; };
 		559AC92520F8D1C0001DEA5B /* IDXMLValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 559AC92420F8D1C0001DEA5B /* IDXMLValue.m */; };
 		559AC92820F8D62C001DEA5B /* IDXMLValue+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = 559AC92720F8D62C001DEA5B /* IDXMLValue+Protected.m */; };
-		FB62A6862106DEBE0056F169 /* IDAddScansDataTransferObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = FB62A6852106DEBE0056F169 /* IDAddScansDataTransferObjects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,8 +57,6 @@
 		559AC92420F8D1C0001DEA5B /* IDXMLValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDXMLValue.m; sourceTree = "<group>"; };
 		559AC92620F8D62C001DEA5B /* IDXMLValue+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IDXMLValue+Protected.h"; sourceTree = "<group>"; };
 		559AC92720F8D62C001DEA5B /* IDXMLValue+Protected.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IDXMLValue+Protected.m"; sourceTree = "<group>"; };
-		FB62A6842106DEBE0056F169 /* IDAddScansDataTransferObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDAddScansDataTransferObjects.h; path = ../../../Sovkombank_MobileCredit/objc.shoploan/Sources/Network/Models/IDAddScansDataTransferObjects.h; sourceTree = "<group>"; };
-		FB62A6852106DEBE0056F169 /* IDAddScansDataTransferObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDAddScansDataTransferObjects.m; path = ../../../Sovkombank_MobileCredit/objc.shoploan/Sources/Network/Models/IDAddScansDataTransferObjects.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +73,6 @@
 		5556427B20FE1C1A00AEAE2B /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				FB62A6842106DEBE0056F169 /* IDAddScansDataTransferObjects.h */,
-				FB62A6852106DEBE0056F169 /* IDAddScansDataTransferObjects.m */,
 				5556428E20FF2E8400AEAE2B /* RootXMLModel.h */,
 				5556428F20FF2E8400AEAE2B /* RootXMLModel.m */,
 				5556428820FF2D6100AEAE2B /* BookstoreXMLModel.h */,
@@ -227,7 +222,6 @@
 				5556427420FE155B00AEAE2B /* IDXMLModel.m in Sources */,
 				559AC92820F8D62C001DEA5B /* IDXMLValue+Protected.m in Sources */,
 				5556428A20FF2D6100AEAE2B /* BookstoreXMLModel.m in Sources */,
-				FB62A6862106DEBE0056F169 /* IDAddScansDataTransferObjects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
