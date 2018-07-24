@@ -30,10 +30,9 @@
         [a enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             NSString *safeStringValue = [self safeStringValue:obj];
-            NSString *temporaryString = [@"\n" stringByAppendingString: safeStringValue];
             NSString *formattedAttributes = [self formattedAttributes: attributesArray[idx]];
             NSString *formattedValueBetweenTags = [self formattedValueBetweenTagsWithParameter:parameter
-                                                                                         value:temporaryString
+                                                                                         value:safeStringValue
                                                                                         prefix:formattedPrefix
                                                                            formattedAttributes:formattedAttributes];
             
@@ -54,12 +53,14 @@
                                                                                     prefix:formattedPrefix
                                                                        formattedAttributes:formattedAttributes];
         
-        NSString *tabulation = initial ? @"" : @"\t";
-        NSString *totalFormattedValue = [tabulation stringByAppendingString: formattedValueBetweenTags];
+        
+        NSString *totalFormattedValue = formattedValueBetweenTags;
         
         mutableTotalValue = totalFormattedValue.mutableCopy;
     }
     
+    
+    mutableTotalValue = mutableTotalValue.tabulated.mutableCopy;
     [mutableTotalValue appendString:@"\n"];
     
     return mutableTotalValue.copy;

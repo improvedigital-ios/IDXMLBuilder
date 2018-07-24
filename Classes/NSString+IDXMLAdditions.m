@@ -12,20 +12,20 @@
 
 - (NSString *)tabulated {
     
-    NSMutableString *representedString = self.mutableCopy;
-    NSArray *array = [representedString componentsSeparatedByString:@"\n"];
+    NSMutableString *total = @"".mutableCopy;
     
-    for (int i = 0; i < array.count; i++) {
-        
-        NSRange range = [representedString rangeOfString:array[i]];
-        
-        if (range.location == NSNotFound) {
-            continue;
+    NSArray *partsOfSelfString = [self componentsSeparatedByString:@"\n"];
+    
+    [partsOfSelfString enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [total appendString:@"\t"];
+        [total appendString:obj];
+        if (idx != partsOfSelfString.count - 1) {
+            [total appendString:@"\n"];
         }
-        [representedString insertString:@"\t" atIndex:range.location];
-    }
+    }];
+
+    return total.copy;
     
-    return representedString.copy;
 }
 
 @end
