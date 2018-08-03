@@ -133,7 +133,7 @@
                                  formattedAttributes: (NSString *)formattedAttributes {
     
     if (value == nil) {
-        return [NSString stringWithFormat:@"<%@%@ nil=\"true\"/>", parameter, prefix];
+        return [NSString stringWithFormat:@"<%@ %@ nil=\"true\"/>", parameter, prefix];
     }
     
     NSString *initialTagFormat = [NSString stringWithFormat:@"<%@%@%@>",
