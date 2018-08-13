@@ -18,4 +18,6 @@
 @property (nonatomic, strong) NSString *defaultPrefix;
 @property (nonatomic, strong) NSDictionary <NSString *, NSString *> *prefixesForPropertyKeys;
 
+@property (nonatomic, strong, readonly) NSDictionary <NSString *, NSString *> *parameterNameSubstitutes;
+
 @end

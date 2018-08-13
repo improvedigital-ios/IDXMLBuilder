@@ -54,6 +54,8 @@
         NSString *finalPrefix = [self handledPrefixForPropertyName:propertyName];
         NSArray *attributesArray = [self attributesWithValue:value propertyName:propertyName];
         
+        propertyName = [self replacedParameterIfNeeded: propertyName];
+
         NSString *formattedStringForCurrentProperty = [IDXMLStringGenerator representedStringWithPrefix:finalPrefix
                                                                                               parameter:propertyName
                                                                                                   value:value
@@ -113,6 +115,20 @@
     }
     
     return prefix;
+}
+
+- (NSString *)replacedParameterIfNeeded: (NSString *)parameter {
+    
+    if (self.parameterNameSubstitutes.allKeys.count != 0) {
+        
+        NSString *substitute = self.parameterNameSubstitutes[parameter];
+        
+        if (substitute != nil) {
+            return substitute;
+        }
+    }
+    
+    return parameter;
 }
 
 @end

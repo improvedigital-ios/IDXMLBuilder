@@ -10,7 +10,7 @@
 
 @interface BookXMLModel : IDXMLModel
 
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *somethingWhatNeedToRename;
 @property (nonatomic, strong) NSString *author;
 @property (nonatomic, assign) NSInteger year;
 @property (nonatomic, assign) double price;

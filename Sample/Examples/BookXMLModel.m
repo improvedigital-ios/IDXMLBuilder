@@ -10,4 +10,8 @@
 
 @implementation BookXMLModel
 
+- (NSDictionary<NSString *,NSString *> *)parameterNameSubstitutes {
+    return @{@"somethingWhatNeedToRename" : @"title"};
+}
+
 @end
