@@ -51,11 +51,17 @@
         NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)];
         
         id value = [self valueForKey:propertyName];
+        
         NSString *finalPrefix = [self handledPrefixForPropertyName:propertyName];
         NSArray *attributesArray = [self attributesWithValue:value propertyName:propertyName];
         
         propertyName = [self replacedParameterIfNeeded: propertyName];
 
+        // TODO: Method for force nil installation
+        if (value == nil || [value isKindOfClass:[NSNull class]]) {
+            continue;
+        }
+        
         NSString *formattedStringForCurrentProperty = [IDXMLStringGenerator representedStringWithPrefix:finalPrefix
                                                                                               parameter:propertyName
                                                                                                   value:value

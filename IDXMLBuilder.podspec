@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'IDXMLBuilder'
-  s.version          = '0.1.6'
+  s.version          = '0.2.0'
   s.summary          = 'IDXMLBuilder created for easy XML files generation'
   s.description      = 'Detailed description...'
   s.homepage         = 'https://github.com/improvedigital-ios/IDXMLBuilder'

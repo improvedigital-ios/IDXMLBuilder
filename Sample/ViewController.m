@@ -42,7 +42,7 @@
     
     BookXMLModel *book3 = [BookXMLModel new];
     book3.defaultPrefix = @"xml";
-    book3.somethingWhatNeedToRename = @"Learning XML";
+    book3.somethingWhatNeedToRename = nil;
     book3.author = @"Erik T. Ray";
     book3.year = 2003;
     book3.price = 39.95;
